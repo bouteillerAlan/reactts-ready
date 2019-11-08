@@ -1,0 +1,49 @@
+@import '../../style/scss/app';
+
+.collapsible {
+  list-style: none !important; //important is here jic
+  li {
+      color: $collapsible_color;
+  }
+
+  .collapsible_header {
+    &.special_border.close {
+      border-bottom: none;
+    }
+    border-top: solid $collapsible_border 2px;
+    border-bottom: solid $collapsible_border 2px;
+    padding: 15px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      &:hover {
+        cursor: pointer;
+      }
+      &.close {
+        transform: rotate(180deg);
+      }
+      min-width: 50px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      background-image: url($collapsible_icon);
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .collapsible_body {
+    padding: 15px;
+    &.last_border {
+      border-bottom: solid $collapsible_border 2px;
+    }
+    &.close {
+      display: none;
+      border-bottom: none !important;
+    }
+  }
+}
