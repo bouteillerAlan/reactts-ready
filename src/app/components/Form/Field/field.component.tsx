@@ -114,7 +114,7 @@ export const Field: React.SFC<IFieldProps> = ({
         <span>{unit}</span>
       </>
     ))
-  }
+  };
 
   return (
     <FormContext.Consumer>
@@ -233,9 +233,9 @@ export const Field: React.SFC<IFieldProps> = ({
         >
           {/* select default value */}
           {(() => {
-            console.log('[FieldComponent] - dropdown - options and current value ', options, context!.values[id])
-            const selectedOption = options && options.find(option => option === (context!.values[id]))
-            console.log('[FieldComponent] - dropdown - selectedOption', selectedOption)
+            console.log('[FieldComponent] - dropdown - options and current value ', options, context!.values[id]);
+            const selectedOption = options && options.find(option => option === (context!.values[id]));
+            console.log('[FieldComponent] - dropdown - selectedOption', selectedOption);
             return selectedOption 
             ? (<option key={selectedOption} value={selectedOption}>{selectedOption}</option>)
             : (<option value={placeholder} key={""}>{placeholder}</option>)
@@ -257,8 +257,8 @@ export const Field: React.SFC<IFieldProps> = ({
           style={getEditorStyle(context ? context.errors : {})}
           onChange={
             (e: React.FormEvent<HTMLSelectElement>) => {
-              console.log('[FieldComponent] - entitydropdown change - ', e.currentTarget.value)
-              const selectedOption = entityOptions && entityOptions.find(option => option.value === e.currentTarget.value)
+              console.log('[FieldComponent] - entitydropdown change - ', e.currentTarget.value);
+              const selectedOption = entityOptions && entityOptions.find(option => option.value === e.currentTarget.value);
               context!.setValues({ [id]: selectedOption && selectedOption.key}) // add key (wich is normally an object id) to the form values
             }
           }
@@ -270,8 +270,8 @@ export const Field: React.SFC<IFieldProps> = ({
         >
           {/* select default value */}
           {(() => {
-            const selectedOption = entityOptions && entityOptions.find(option => option.key === (context!.values[id]))
-            console.log('[FieldComponent] - entitydropdown - selectedOption', selectedOption)
+            const selectedOption = entityOptions && entityOptions.find(option => option.key === (context!.values[id]));
+            console.log('[FieldComponent] - entitydropdown - selectedOption', selectedOption);
             return selectedOption 
             ? (<option key={context!.values[id]} value={selectedOption && selectedOption.value}>{selectedOption && selectedOption.value}</option>)
             : (<option value={placeholder} key={""}>{placeholder}</option>)
@@ -299,8 +299,8 @@ export const Field: React.SFC<IFieldProps> = ({
           value={context!.values[id]}
           
           onChange={(dataItems: any, metadata: any) => {
-            console.log('[FieldComponent] - multientitydropdown change - ', dataItems)
-            context!.setValues({ [id]: dataItems.map((item: IEntityDropdownOption) => item.key) })
+            console.log('[FieldComponent] - multientitydropdown change - ', dataItems);
+            context!.setValues({ [id]: dataItems.map((item: IEntityDropdownOption) => item.key) });
             setTimeout( () => {
               context!.validate(id)
             }, 300)
@@ -321,9 +321,9 @@ export const Field: React.SFC<IFieldProps> = ({
             value={value}
             onChange={
               (onChangeEvent) => {
-                console.log(`[FieldComponent] - video picker - onChangeEvent `, onChangeEvent.target.files)
+                console.log(`[FieldComponent] - video picker - onChangeEvent `, onChangeEvent.target.files);
                 if (onChangeEvent.target.files && onChangeEvent.target.files[0]) {
-                  console.log(onChangeEvent.target.files[0])
+                  console.log(onChangeEvent.target.files[0]);
                   context!.setValues({ [id]: onChangeEvent.target.files[0] })
 
                 } else {
@@ -351,24 +351,24 @@ export const Field: React.SFC<IFieldProps> = ({
             value={value}
             onChange={
               (onChangeEvent) => {
-                console.log('[FieldComponent] - image picker - onChangeEvent ', onChangeEvent.target.files)
+                console.log('[FieldComponent] - image picker - onChangeEvent ', onChangeEvent.target.files);
                 if (onChangeEvent.target.files && onChangeEvent.target.files[0]) {
-                  console.log(onChangeEvent.target.files[0])
-                  context!.setValues({ [id]: onChangeEvent.target.files[0] }) 
+                  console.log(onChangeEvent.target.files[0]);
+                  context!.setValues({ [id]: onChangeEvent.target.files[0] });
       
                   const FR = new FileReader();
                   
                   FR.addEventListener("load", function(e: any) {
                     if (e && e.target) {
-                      const imgHtmlElement = document.getElementById(id + "img") as HTMLImageElement
+                      const imgHtmlElement = document.getElementById(id + "img") as HTMLImageElement;
                       if (imgHtmlElement) imgHtmlElement.src = e.target.result
                     }
                   }); 
                   
                   FR.readAsDataURL( onChangeEvent.target.files[0] );
                 } else {
-                  const imgHtmlElement = document.getElementById(id + "img") as HTMLImageElement
-                  if (imgHtmlElement) imgHtmlElement.src = ""
+                  const imgHtmlElement = document.getElementById(id + "img") as HTMLImageElement;
+                  if (imgHtmlElement) imgHtmlElement.src = "";
                   context!.setValues({ [id]: "" }) 
                 }
               }
@@ -397,7 +397,7 @@ export const Field: React.SFC<IFieldProps> = ({
             style={getEditorStyle(context ? context.errors : {})}
             onChange={
               (e: React.FormEvent<HTMLInputElement>) => {
-                console.log(e.currentTarget.value )
+                console.log(e.currentTarget.value );
                   context!.setValues({ [id]: e.currentTarget.checked }) }
             }
             onBlur={
