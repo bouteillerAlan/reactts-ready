@@ -45,13 +45,21 @@ Example of file architecture :
 ```
 
 ## Env file
-Create a ``.env`` file in the root of the project.
+For the development create a ``.env.development`` file in the root of the project.
 
+For the production create a ``.env`` file in the root of the project.
+
+``.env`` content :
 ```
 # application port
 PORT=1234
 # api url
 REACT_APP_API_URL=http://localhost:3001
+```
+
+In the code
+```
+const env_url = process.env.REACT_APP_API_URL
 ```
 
 ## Command
