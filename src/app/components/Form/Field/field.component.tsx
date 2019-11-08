@@ -1,14 +1,15 @@
-import * as React from "react";
-import { IErrors, IFormContext, FormContext, IValues } from "../form.component";
-import { Multiselect, DateTimePicker } from 'react-widgets';
-import { EditorState } from 'draft-js';
+import * as React from 'react';
+import { IErrors, IFormContext, FormContext, IValues } from '../form.component';
+import { Multiselect} from 'react-widgets';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import { registerLocale} from  'react-datepicker';
 import fr from 'date-fns/locale/fr';
-import DraftEditor from "../DraftEditor/draft-editor.component";
 import { msToHMS, hMSToMs } from '../../../../config/utils';
 import './field.component.scss';
+
+// import DraftEditor from '../DraftEditor/draft-editor.component';
+
 registerLocale('fr', fr);
 
 
@@ -120,6 +121,17 @@ export const Field: React.SFC<IFieldProps> = ({
     {(context: (IFormContext | undefined)) => (
     <div className="form-group" style={containerStyle}>
       {label && <label htmlFor={id}>{label}</label>}
+
+        {/*see for refacto this ?*/}
+        {/*{editor!.toLowerCase() === "wyziwyg" && (*/}
+        {/*    <DraftEditor*/}
+        {/*        html={context!.values[id]}*/}
+        {/*        onChange={(html: string) => {*/}
+        {/*            console.log('[FieldComponent] - wyziwyg - change - ', html)*/}
+        {/*            context!.setValues({ [id]: html })*/}
+        {/*        }}*/}
+        {/*    />*/}
+        {/*)}*/}
 
       {editor!.toLowerCase() === "textbox" && (
         <input
@@ -407,16 +419,6 @@ export const Field: React.SFC<IFieldProps> = ({
           dateFormat='dd/MM/yyyy'
           isClearable={true}
           placeholderText={placeholder}
-        />
-      )}
-
-      {editor!.toLowerCase() === "wyziwyg" && (
-        <DraftEditor
-          html={context!.values[id]}
-          onChange={(html: string) => {
-            console.log('[FieldComponent] - wyziwyg - change - ', html)
-            context!.setValues({ [id]: html })
-          }}
         />
       )}
 
