@@ -44,6 +44,16 @@ Example of file architecture :
           |_ utils.ts
 ```
 
+## Env file
+Create a ``.env`` file in the root of the project.
+
+```
+# application port
+PORT=1234
+# api url
+REACT_APP_API_URL=http://localhost:3001
+```
+
 ## Command
 ### Installation
 
