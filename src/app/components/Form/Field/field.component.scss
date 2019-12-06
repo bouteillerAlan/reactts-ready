@@ -1,25 +1,26 @@
 @import '../../../style/scss/app';
 
 .form-group {
-    padding-top: 10px;
-    .time {
-        width: 15vw;
-        display: flex;
-        justify-content: flex-start;
+  padding-top: 10px;
 
-        input {
-            width: 50px !important;
-        }
+  .time {
+    width: 15vw;
+    display: flex;
+    justify-content: flex-start;
 
-        span {
-            color: white;
-            align-self: flex-end;
-            font-size: 20px;
-            padding: 0 40px 0 10px;
-        }
+    input {
+      width: 50px !important;
     }
 
-    p:not(.form-group-error), a {
-        color: $error_color;
+    span {
+      color: white;
+      align-self: flex-end;
+      font-size: 20px;
+      padding: 0 40px 0 10px;
     }
+  }
+
+  p:not(.form-group-error), a {
+    color: $error_color;
+  }
 }

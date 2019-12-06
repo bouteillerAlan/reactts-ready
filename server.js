@@ -11,12 +11,12 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-    const server = express();
-    server.get('*', (req, res) => handle(req, res));
-    server.listen(_PORT, (err) => {
-        if (err) throw err;
-        console.log(`✅ you are in ${_NODE_ENV}`.green);
-        console.log(`🤘 access url is http://localhost:${_PORT}`.green);
-        console.log(`📡 you fire on ${_API}`.green)
-    });
+  const server = express();
+  server.get('*', (req, res) => handle(req, res));
+  server.listen(_PORT, (err) => {
+    if (err) throw err;
+    console.log(`✅ you are in ${_NODE_ENV}`.green);
+    console.log(`🤘 access url is http://localhost:${_PORT}`.green);
+    console.log(`📡 you fire on ${_API}`.green)
+  });
 });

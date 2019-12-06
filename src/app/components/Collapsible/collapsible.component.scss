@@ -3,13 +3,14 @@
 .collapsible {
   list-style: none !important; //important is here jic
   li {
-      color: $collapsible_color;
+    color: $collapsible_color;
   }
 
   .collapsible_header {
     &.special_border.close {
       border-bottom: none;
     }
+
     border-top: solid $collapsible_border 2px;
     border-bottom: solid $collapsible_border 2px;
     padding: 15px;
@@ -19,13 +20,16 @@
     line-height: 22px;
     display: flex;
     justify-content: space-between;
+
     .icon {
       &:hover {
         cursor: pointer;
       }
+
       &.close {
         transform: rotate(180deg);
       }
+
       min-width: 50px;
       display: flex;
       justify-content: center;
@@ -38,9 +42,11 @@
 
   .collapsible_body {
     padding: 15px;
+
     &.last_border {
       border-bottom: solid $collapsible_border 2px;
     }
+
     &.close {
       display: none;
       border-bottom: none !important;
