@@ -2,6 +2,32 @@
 
 See [here](https://github.com/bouteillerAlan/Commit-Rule)
 
+## ESLint rules
+
+See [here](https://google.github.io/styleguide/jsguide.html)
+
+Custom rules : 
+```
+"padded-blocks": "off"
+```
+
+## JSDoc rules
+
+See [more here](https://devdocs.io/jsdoc/) and [here](https://eslint.org/docs/rules/valid-jsdoc#top)
+
+Example :
+```
+/**
+ * Add two numbers.
+ * @param {number} num1 The first number.
+ * @param {number} num2 The second number.
+ * @returns {number} The sum of the two numbers.
+ */
+function add(num1, num2) {
+    return num1 + num2;
+}
+```
+
 ## Files architecture rules
 
 Each component and page have a proper folder.
