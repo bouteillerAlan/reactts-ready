@@ -1,0 +1,90 @@
+@import '../../style/scss/app';
+
+/* BUTTONS
+-------------------------------------------------------------*/
+
+@mixin button-bg($button_background, $button_border) {
+  background: $button_background;
+  border: 2px solid $button_border;
+  box-shadow: 0 2px 0 $button_shadow;
+
+  &:hover {
+    background: darken($button_background, 8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background: darken($button_background, 25%);
+  }
+}
+
+.button {
+  box-sizing: border-box;
+  border-radius: 49px;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 15px 20px;
+  margin-bottom: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .button-content-container {
+    display: flex;
+    align-items: center;
+
+    .button-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      margin-left: -5px;
+      padding: 6px;
+      border: 2px solid $button_icon_border;
+      border-radius: 30px;
+      background-color: $button_icon_background;
+    }
+  }
+}
+
+.button-success {
+  @include button-bg($success_background, $success_border);
+}
+
+.button-info {
+  @include button-bg($info_background, $info_border);
+}
+
+.button-important {
+  @include button-bg($warning_background, $warning_border);
+}
+
+.button-light {
+  @include button-bg($light_background, $light_border);
+  color: $dark_color;
+}
+
+.button-dark {
+  @include button-bg($dark_background, $dark_border);
+}
+
+.button-large {
+  padding: 20px 30px;
+}
+
+.button-round {
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  i {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
+}
