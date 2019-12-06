@@ -17,25 +17,25 @@ interface IButtonState {
 }
 
 class Button extends React.Component<IButtonProps, IButtonState> {
-  render() { 
-    const { color, size, isSubmit, disabled, href, onClick, className, icon } = this.props;
+  render() {
+    const {color, size, isSubmit, disabled, href, onClick, className, icon} = this.props;
 
     return (
-        <div className="button_component">
-            <a href={href}>
-              <button
-                className={`button button-${color} button-${size} ${className ? className : ''}`}
-                type={isSubmit ? 'submit' : 'button'}
-                disabled={disabled}
-                onClick={onClick}
-              >
+      <div className="button_component">
+        <a href={href}>
+          <button
+            className={`button button-${color} button-${size} ${className ? className : ''}`}
+            type={isSubmit ? 'submit' : 'button'}
+            disabled={disabled}
+            onClick={onClick}
+          >
                 <span className="button-content-container">
                   {icon && <span className="button-icon">{icon}</span>}
                   {this.props.children}
                 </span>
-              </button>
-            </a>
-        </div>
+          </button>
+        </a>
+      </div>
     )
   }
 }

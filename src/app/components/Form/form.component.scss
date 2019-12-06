@@ -1,22 +1,22 @@
 @import '../../style/scss/app';
 
 .container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-    .alert.alert-info {
-        margin-top: 20px;
-        color: $info_color;
-    }
+  .alert.alert-info {
+    margin-top: 20px;
+    color: $info_color;
+  }
 
-    button {
-        margin-top: 40px;
-    }
+  button {
+    margin-top: 40px;
+  }
 
-    select {
-        option {
-            color: $select_option_color;
-        }
+  select {
+    option {
+      color: $select_option_color;
     }
+  }
 }

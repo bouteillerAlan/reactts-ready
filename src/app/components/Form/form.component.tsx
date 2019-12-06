@@ -1,8 +1,9 @@
 import * as React from "react"
-import { IFieldProps, IValidation } from "./Field/field.component"
+import {IFieldProps, IValidation} from "./Field/field.component"
 import Button from "../Button/button.component"
 import './form.component.scss';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 
@@ -18,145 +19,146 @@ export const required = (values: IValues, fieldName: string): string => {
   values[fieldName] === null ||
   values[fieldName] === "" ||
   values[fieldName].length === 0
-  ? "This must be populated"
-  : ""
+    ? "This must be populated"
+    : ""
 };
 
 
 /**
-* Validates whether a field is a valid email
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @returns {string} - The error message
-*/
+ * Validates whether a field is a valid email
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @returns {string} - The error message
+ */
 export const isEmail = (values: IValues, fieldName: string): string =>
   values[fieldName] &&
   values[fieldName].search(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   )
-  ? "This must be in a valid email format"
-  : "";
+    ? "This must be in a valid email format"
+    : "";
 
 /**
-* Validates whether a field is within a certain amount of characters
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @param {number} length - The maximum number of characters
-* @returns {string} - The error message
-*/
+ * Validates whether a field is within a certain amount of characters
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @param {number} length - The maximum number of characters
+ * @returns {string} - The error message
+ */
 export const maxLength = (
-    values: IValues,
-    fieldName: string,
-    length: number
-  ): string =>
+  values: IValues,
+  fieldName: string,
+  length: number
+): string =>
   values[fieldName] && values[fieldName].length > length
-  ? `This can not exceed ${length} characters`
-  : "";
+    ? `This can not exceed ${length} characters`
+    : "";
 
 /**
-* Validates whether a field is an image file
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @returns {string} - The error message
-*/
+ * Validates whether a field is an image file
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @returns {string} - The error message
+ */
 export const isImage = (
   values: IValues,
   fieldName: string,
-  ): string => {
-    return values[fieldName] && values[fieldName].type && !!values[fieldName].type.search('image')
+): string => {
+  return values[fieldName] && values[fieldName].type && !!values[fieldName].type.search('image')
     ? `The file should be an image.`
     : ""
-  };
+};
 
-  /**
-* Validates whether a field is a video file
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @returns {string} - The error message
-*/
+/**
+ * Validates whether a field is a video file
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @returns {string} - The error message
+ */
 export const isVideo = (
   values: IValues,
   fieldName: string,
-  ): string => {
+): string => {
   return values[fieldName] && values[fieldName].type && !!values[fieldName].type.search('video')
     ? `The file should be a video.`
     : ""
-  };
-  
+};
+
 /**
-* Validates whether a field is within a certain amount of characters
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @returns {string} - The error message
-*/
+ * Validates whether a field is within a certain amount of characters
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @returns {string} - The error message
+ */
 export const isUrl = (
   values: IValues,
   fieldName: string,
-  ): string =>
+): string =>
   values[fieldName] && !values[fieldName].match(
     /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
   )
-  ? `This must be an url`
-  : "";
+    ? `This must be an url`
+    : "";
 
 /**
-* Validates whether a field is within a certain amount of characters
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @param {string} copyFieldName - The field to copy
-* @returns {string} - The error message
-*/
+ * Validates whether a field is within a certain amount of characters
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @param {string} copyFieldName - The field to copy
+ * @returns {string} - The error message
+ */
 export const equalToField = (
   values: IValues,
   fieldName: string,
   copyFieldName: string
 ): string =>
-values[fieldName] !== values[copyFieldName] && values[copyFieldName]
-? `Field not equal`
-: "";
+  values[fieldName] !== values[copyFieldName] && values[copyFieldName]
+    ? `Field not equal`
+    : "";
 
 
 /**
-* Validates whether a field is within a certain amount of characters
-* @param {IValues} values - All the field values in the form
-* @param {string} fieldName - The field to validate
-* @param {number} copyFieldName - The field to copy
-* @returns {string} - The error message
-*/
+ * Validates whether a field is within a certain amount of characters
+ * @param {IValues} values - All the field values in the form
+ * @param {string} fieldName - The field to validate
+ * @param {number} copyFieldName - The field to copy
+ * @returns {string} - The error message
+ */
 export const equalToValue = (
   values: IValues,
   fieldName: string,
   value: string
 ): string =>
-values[fieldName] !== value
-? `This is not correctly filled`
-: "";
+  values[fieldName] !== value
+    ? `This is not correctly filled`
+    : "";
 
 
 export interface IFormContext extends IFormState {
-    /* Function that allows values in the values state to be set */
-    setValues: (values: IValues) => void
+  /* Function that allows values in the values state to be set */
+  setValues: (values: IValues) => void
 
-    /* Function that validates a field */
-    validate: (fieldName: string) => void
+  /* Function that validates a field */
+  validate: (fieldName: string) => void
 }
-/* 
+
+/*
 * The context which allows state and functions to be shared with Field.
 * Note that we need to pass createContext a default value which is why undefined is unioned in the type
 */
 export const FormContext = React.createContext<IFormContext | undefined>(
-    undefined
+  undefined
 );
 
 export interface IFields {
-    [key: string]: IFieldProps
+  [key: string]: IFieldProps
 }
 
 interface IFormProps {
   ref?: React.RefObject<any>
 
   /* The action creator that run an api request with the body */
-  action: (body: any, token?: string, urlParams?: {[key: string]: string}) => any
+  action: (body: any, token?: string, urlParams?: { [key: string]: string }) => any
 
   /* The connected user token */
   token?: string
@@ -177,7 +179,7 @@ interface IFormProps {
   submitText: string
 
   /* A prop which allows content to be injected */
-  render: () => React.ReactNode 
+  render: () => React.ReactNode
 }
 
 export interface IValues {
@@ -216,7 +218,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
 
   componentWillReceiveProps(newProps: IFormProps) {
     console.log('[FormComponent] - will receive props - newProps / state - ', newProps, this.state);
-    if(newProps.values !== this.state.values) {
+    if (newProps.values !== this.state.values) {
       const values: IValues = newProps.values ? newProps.values : {};
       console.log('[FormComponent] - received form values derived from state - ', values);
       this.setState({values})
@@ -240,7 +242,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
   // }
 
   componentDidMount() {
-    
+
   }
 
   componentDidUpdate(prevProps: IFormProps, prevState: IFormState) {
@@ -256,14 +258,14 @@ export class Form extends React.Component<IFormProps, IFormState> {
     console.log('[FormComponent] - componentWillUnmount')
   }
 
-/**
- * Executes the validation rule for the field and updates the form errors
- * @param {string} fieldName - The field to validate
- * @returns {string} - The error message
- */
+  /**
+   * Executes the validation rule for the field and updates the form errors
+   * @param {string} fieldName - The field to validate
+   * @returns {string} - The error message
+   */
   private validate = (fieldName: string): string => {
     let newErrors: string[] = [];
-  
+
     if (
       this.props.fields[fieldName] &&
       this.props.fields[fieldName].validation
@@ -276,12 +278,14 @@ export class Form extends React.Component<IFormProps, IFormState> {
     }
 
     let newErrorsString = "";
-    newErrors.forEach(error => { newErrorsString += `${error} `});
+    newErrors.forEach(error => {
+      newErrorsString += `${error} `
+    });
 
 
     this.state.errors[fieldName] = newErrorsString;
     this.setState({
-        errors: { ...this.state.errors, [fieldName]: newErrorsString }
+      errors: {...this.state.errors, [fieldName]: newErrorsString}
     });
     return newErrorsString
   };
@@ -296,16 +300,16 @@ export class Form extends React.Component<IFormProps, IFormState> {
   /**
    * Reset the errors property in state to {}
    */
-  public resetErrors = () => {   
+  public resetErrors = () => {
     this.setState({errors: {}})
   };
 
-/**
- * Stores new field values in state
- * @param {IValues} values - The new field values
- */
+  /**
+   * Stores new field values in state
+   * @param {IValues} values - The new field values
+   */
   private setValues = (values: IValues) => {
-      this.setState({ values: { ...this.state.values, ...values } })
+    this.setState({values: {...this.state.values, ...values}})
   };
 
   /**
@@ -335,7 +339,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
 
     if (this.validateForm()) {
       const submitSuccess: boolean = await this.submitForm();
-      this.setState({ submitSuccess })
+      this.setState({submitSuccess})
     }
   };
 
@@ -349,7 +353,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
     Object.keys(this.props.fields).map((fieldName: string) => {
       errors[fieldName] = this.validate(fieldName)
     });
-    this.setState({ errors });
+    this.setState({errors});
 
     console.log('[FormComponent] - validate form is ok ? ', !this.haveErrors(errors), errors);
 
@@ -366,8 +370,8 @@ export class Form extends React.Component<IFormProps, IFormState> {
 
     const result = await this.props.action({...this.state.values, ...submittedFilesInfos}, this.props.token);
     // const result = {error:false}
-    console.log('[FormComponent] - result of form -', result)
-    if(result && result.type.includes('SUCCESS')) {
+    console.log('[FormComponent] - result of form -', result);
+    if (result && result.type.includes('SUCCESS')) {
       this.props.onActionSuccess(result);
     }
     return !result.error
@@ -375,28 +379,27 @@ export class Form extends React.Component<IFormProps, IFormState> {
 
   /**
    * Submits the files to the http api linked with an image or video Field
-   * @returns {[key]: string} All the files url, with the linked properties 
+   * @returns {[key]: string} All the files url, with the linked properties
    */
   private async submitFiles(): Promise<any> {
     console.log(this.props.fields, this.state.values);
 
     // get the files with linked property name
     const filesInfos = Object.values(this.props.fields)
-    .filter( (field: IFieldProps) => (field.editor === 'image' || field.editor === 'video') && typeof this.state.values[field.id] == 'object')
-    .map((field: IFieldProps) => ({propertyName: field.id, file: this.state.values[field.id]}));
+      .filter((field: IFieldProps) => (field.editor === 'image' || field.editor === 'video') && typeof this.state.values[field.id] == 'object')
+      .map((field: IFieldProps) => ({propertyName: field.id, file: this.state.values[field.id]}));
 
     console.log('[FormComponent] - submitting files ...', filesInfos);
 
-    const uploadedFilesInfos = await Promise.all(filesInfos.map( (fileInfo: any) => {
+    const uploadedFilesInfos = await Promise.all(filesInfos.map((fileInfo: any) => {
       const formData = new FormData();
       formData.append('file', fileInfo.file);
 
-      return new Promise<any>( (resolve, reject) => {
+      return new Promise<any>((resolve, reject) => {
         fetch(`${API_URL}/upload`, {
-        method: "POST",
-        headers: new Headers({
-        }),
-        body: formData
+          method: "POST",
+          headers: new Headers({}),
+          body: formData
         }).then(
           response => response.json() // if the response is a JSON object
         ).then(
@@ -404,65 +407,68 @@ export class Form extends React.Component<IFormProps, IFormState> {
         ).catch(
           error => reject(error) // Handle the error response object
         );
-      }) 
+      })
     }));
 
     console.log(uploadedFilesInfos);
     let submittedFilesInfos = {};
-    uploadedFilesInfos.forEach( (uploadedFileInfos: any, index: number) => {
-      submittedFilesInfos = {...submittedFilesInfos, [filesInfos[index].propertyName]: uploadedFileInfos.path.replace('public', '')}
+    uploadedFilesInfos.forEach((uploadedFileInfos: any, index: number) => {
+      submittedFilesInfos = {
+        ...submittedFilesInfos,
+        [filesInfos[index].propertyName]: uploadedFileInfos.path.replace('public', '')
+      }
     });
     return submittedFilesInfos
   }
 
   public render() {
-    const { submitSuccess, errors } = this.state;
+    const {submitSuccess, errors} = this.state;
 
     console.log('[FormComponent] - render - state - ', this.state);
     const context: IFormContext = {
-        ...this.state,
-        setValues: this.setValues,
-        validate: this.validate,
-      };
+      ...this.state,
+      setValues: this.setValues,
+      validate: this.validate,
+    };
 
-      console.log('[FormComponent] - context - ', context);
+    console.log('[FormComponent] - context - ', context);
     return (
-        <FormContext.Provider value={context}>
-          <form onSubmit={this.handleSubmit} noValidate={true}>
-              <div className="container">
+      <FormContext.Provider value={context}>
+        <form onSubmit={this.handleSubmit} noValidate={true}>
+          <div className="container">
 
-              {this.props.render()}
-              <div className="form-group form-group-submit">
-                <Button
-                  isSubmit={true}
-                  disabled={this.haveErrors(errors)}
-                  color="success"
-                  size="normal"
-                >
-                  {this.props.submitText}
-                </Button>
+            {this.props.render()}
+            <div className="form-group form-group-submit">
+              <Button
+                isSubmit={true}
+                disabled={this.haveErrors(errors)}
+                color="success"
+                size="normal"
+              >
+                {this.props.submitText}
+              </Button>
+            </div>
+            {submitSuccess && (
+              <div className="alert alert-info" role="alert">
+                The form was successfully submitted!
               </div>
-              {submitSuccess && (
-                  <div className="alert alert-info" role="alert">
-                  The form was successfully submitted!
-                  </div>
-              )}
-              {submitSuccess === false &&
-                  !this.haveErrors(errors) && (
-                  <div className="alert alert-danger" role="alert">
-                      Sorry, an unexpected error has occurred
-                  </div>
-                  )}
-              {submitSuccess === false &&
-                  this.haveErrors(errors) && (
-                  <div className="alert alert-danger" role="alert">
-                      Sorry, the form is invalid. Please review, adjust and try again
-                  </div>
-                  )}
+            )}
+            {submitSuccess === false &&
+            !this.haveErrors(errors) && (
+              <div className="alert alert-danger" role="alert">
+                Sorry, an unexpected error has occurred
               </div>
-          </form>
-        </FormContext.Provider>
-      
+            )}
+            {submitSuccess === false &&
+            this.haveErrors(errors) && (
+              <div className="alert alert-danger" role="alert">
+                Sorry, the form is invalid. Please review, adjust and try again
+              </div>
+            )}
+          </div>
+        </form>
+      </FormContext.Provider>
+
     )
   }
 }
